@@ -14,3 +14,13 @@ ease-in-out 0s !important;
 .rm_navigation-wrapper .header__icon--menu[aria-expanded=true]:before {
     display: none !important;
 }
+#Details-menu-drawer-container .header__icon{
+    z-index: 10;
+}
+#menu-drawer{
+    position: absolute;
+    top: 0;
+}
+.menu-drawer{
+    border-style: none;
+}
