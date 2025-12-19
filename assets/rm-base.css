@@ -13,3 +13,6 @@
     transition: all 0.3s 
 ease-in-out 0s !important;
 }
+.rm_navigation-wrapper .header__icon--menu[aria-expanded=true]:before {
+    display: none !important;
+}
