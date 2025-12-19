@@ -3,4 +3,8 @@
     background-color: transparent;
     position: absolute;
     top: 0;
+    transition: 0.5s ease;
+}
+.rm_navigation-wrapper.onscroll{
+    background-color: white;
 }
