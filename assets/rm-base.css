@@ -7,8 +7,6 @@
 }
 .rm_navigation-wrapper.scroll-on{
     background: white !important;
-    top: 0 !important;
-    left: 0;
     width: 100% !important;
     transition: all 0.3s 
 ease-in-out 0s !important;
