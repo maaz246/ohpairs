@@ -29,20 +29,9 @@
         "padding_top": 20,
         "padding_bottom": 20
       }
-    },
-    "custom_liquid_CBtfar": {
-      "type": "custom-liquid",
-      "name": "t:sections.custom-liquid.presets.name",
-      "settings": {
-        "custom_liquid": "<script>\nlet nav = document.querySelector('.navigation-wrap')\nwindow.onscroll = function(){\n    if(document.documentElement.scrollTop > 20){\n    nav.classList.add(\"scroll-on\");\n    }else{\n        nav.classList.remove(\"scroll-on\");\n    }\n}\n</script>",
-        "color_scheme": "",
-        "padding_top": 40,
-        "padding_bottom": 52
-      }
     }
   },
   "order": [
-    "header",
-    "custom_liquid_CBtfar"
+    "header"
   ]
 }
