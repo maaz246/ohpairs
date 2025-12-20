@@ -5,6 +5,7 @@ a{
     color: black;
     font-size: 16px;
     position: relative;
+    font-weight: 600;
 }
 .rm_navigation-wrapper{
     width: 100%;
