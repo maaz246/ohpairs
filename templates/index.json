@@ -18,7 +18,20 @@
             "bg_image": "shopify://shop_images/Untitled_design_1.png",
             "overlay_opacity": 30,
             "product_image": "shopify://shop_images/pastel-colors-3d-sneakers_23-2151853225-Photoroom_1.png",
-            "heading": "Nike<br> Airflow Black",
+            "heading": "Nike Airflow Black",
+            "subtext": "Discover the latest trends in our collection.",
+            "text_color": "#000000",
+            "btn_label": "Shop Now",
+            "btn_link": "#"
+          }
+        },
+        "slide_eDtNK3": {
+          "type": "slide",
+          "settings": {
+            "bg_image": "shopify://shop_images/Untitled_design_1.png",
+            "overlay_opacity": 30,
+            "product_image": "shopify://shop_images/pastel-colors-3d-sneakers_23-2151853225-Photoroom_1.png",
+            "heading": "Nike Airflow Black",
             "subtext": "Discover the latest trends in our collection.",
             "text_color": "#000000",
             "btn_label": "Shop Now",
@@ -27,7 +40,8 @@
         }
       },
       "block_order": [
-        "slide_3zBcHz"
+        "slide_3zBcHz",
+        "slide_eDtNK3"
       ],
       "name": "Custom Banner Slideshow",
       "settings": {
