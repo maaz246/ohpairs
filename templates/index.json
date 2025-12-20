@@ -9,6 +9,45 @@
  */
 {
   "sections": {
+    "custom_banner_slideshow_wDUCwX": {
+      "type": "custom-banner-slideshow",
+      "blocks": {
+        "slide_3zBcHz": {
+          "type": "slide",
+          "settings": {
+            "bg_image": "shopify://shop_images/Untitled_design.png",
+            "overlay_opacity": 30,
+            "heading": "New Arrivals",
+            "subtext": "Discover the latest trends in our collection.",
+            "text_color": "#FFFFFF",
+            "btn_label": "Shop Now",
+            "btn_link": ""
+          }
+        },
+        "slide_3RntHi": {
+          "type": "slide",
+          "settings": {
+            "overlay_opacity": 30,
+            "heading": "New Arrivals",
+            "subtext": "Discover the latest trends in our collection.",
+            "text_color": "#FFFFFF",
+            "btn_label": "Shop Now",
+            "btn_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_3zBcHz",
+        "slide_3RntHi"
+      ],
+      "name": "Custom Banner Slideshow",
+      "settings": {
+        "btn_bg_color": "#000000",
+        "btn_text_color": "#FFFFFF",
+        "enable_autoplay": true,
+        "autoplay_speed": 5
+      }
+    },
     "rich_text": {
       "type": "rich-text",
       "blocks": {
@@ -175,6 +214,7 @@
     }
   },
   "order": [
+    "custom_banner_slideshow_wDUCwX",
     "rich_text",
     "featured_collection",
     "collage",
