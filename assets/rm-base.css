@@ -36,3 +36,6 @@ ease-in-out 0s !important;
 .menu-drawer__navigation {
     padding: 10rem 0 !important;
 }
+.banner{
+    height: 100vh !important;
+}
