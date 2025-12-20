@@ -3,7 +3,8 @@ a{
 }
 .rm_order_text{
     color: black;
-    font-size: 13px;
+    font-size: 16px;
+    position: relative;
 }
 .rm_navigation-wrapper{
     width: 100%;
