@@ -23,28 +23,16 @@
             "btn_label": "Shop Now",
             "btn_link": ""
           }
-        },
-        "slide_3RntHi": {
-          "type": "slide",
-          "settings": {
-            "overlay_opacity": 30,
-            "heading": "New Arrivals",
-            "subtext": "Discover the latest trends in our collection.",
-            "text_color": "#FFFFFF",
-            "btn_label": "Shop Now",
-            "btn_link": ""
-          }
         }
       },
       "block_order": [
-        "slide_3zBcHz",
-        "slide_3RntHi"
+        "slide_3zBcHz"
       ],
       "name": "Custom Banner Slideshow",
       "settings": {
         "btn_bg_color": "#000000",
         "btn_text_color": "#FFFFFF",
-        "enable_autoplay": true,
+        "enable_autoplay": false,
         "autoplay_speed": 5
       }
     },
