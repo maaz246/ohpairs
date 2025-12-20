@@ -12,7 +12,7 @@ a{
     position: absolute;
     top: 0;
     transition: 0.5s ease;
-    padding: 10px 10px  !important;
+    padding: 10px 20px  !important;
 }
 .rm_navigation-wrapper.scroll-on{
     background: white !important;
