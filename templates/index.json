@@ -28,12 +28,12 @@
         "slide_eDtNK3": {
           "type": "slide",
           "settings": {
-            "bg_image": "shopify://shop_images/Untitled_design_1.png",
+            "bg_image": "shopify://shop_images/Untitled_design_184189a0-e973-4bf4-bb4e-84c2b2ee2b60.png",
             "overlay_opacity": 30,
             "product_image": "shopify://shop_images/Nike-Air-Max-Plus-Photoroom.png",
             "heading": "Jordern<br>Blue Ace",
             "subtext": "Discover the latest trends in our collection.",
-            "text_color": "#000000",
+            "text_color": "#ffffff",
             "btn_label": "Shop Now",
             "btn_link": "#"
           }
