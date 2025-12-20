@@ -61,7 +61,7 @@
       "settings": {
         "btn_bg_color": "#000000",
         "btn_text_color": "#FFFFFF",
-        "enable_autoplay": true,
+        "enable_autoplay": false,
         "autoplay_speed": 3
       }
     },
