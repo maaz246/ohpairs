@@ -50,6 +50,12 @@
 
     <button class="prev-slide" aria-label="Previous Slide">&#10094;</button>
     <button class="next-slide" aria-label="Next Slide">&#10095;</button>
+
+    <div class="slide-dots-container">
+      {% for block in section.blocks %}
+        <span class="slide-dot {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}"></span>
+      {% endfor %}
+    </div>
   </div>
 </div>
 
@@ -185,6 +191,35 @@
     transform: translateY(0);
     opacity: 1;
   }
+  .slide-dots-container {
+    position: absolute;
+    bottom: 30px;
+    right: 40px; /* Positioned bottom right */
+    z-index: 10;
+    display: flex;
+    gap: 12px;
+  }
+
+  .slide-dot {
+    width: 12px;
+    height: 12px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .slide-dot:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+
+  /* Active Dot Animation */
+  .slide-dot.active {
+    background-color: #fff;
+    transform: scale(1.3); /* Expands when active */
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+  }
 
   /* Navigation Arrows */
   .prev-slide, .next-slide {
@@ -235,24 +270,40 @@
     .slide-product-image img {
       max-height: 250px;
     }
+
+    .slide-dots-container {
+      right: 50%;
+      transform: translateX(50%);
+      bottom: 20px;
+    }
   }
 </style>
-
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     const container = document.getElementById("slideshow-{{ section.id }}");
     const slides = container.querySelectorAll(".slide-item");
+    const dots = container.querySelectorAll(".slide-dot");
     const nextBtn = container.querySelector(".next-slide");
     const prevBtn = container.querySelector(".prev-slide");
+    
     let currentIndex = 0;
     const intervalTime = {{ section.settings.autoplay_speed }} * 1000;
     let slideInterval;
 
     function showSlide(index) {
+      // Update Slides
       slides.forEach((slide, i) => {
         slide.classList.remove("active");
         if (i === index) {
           slide.classList.add("active");
+        }
+      });
+
+      // Update Dots
+      dots.forEach((dot, i) => {
+        dot.classList.remove("active");
+        if (i === index) {
+          dot.classList.add("active");
         }
       });
     }
@@ -267,7 +318,7 @@
       showSlide(currentIndex);
     }
 
-    // Event Listeners
+    // Arrow Event Listeners
     nextBtn.addEventListener("click", () => {
       nextSlide();
       resetTimer();
@@ -276,6 +327,16 @@
     prevBtn.addEventListener("click", () => {
       prevSlide();
       resetTimer();
+    });
+
+    // Dot Event Listeners
+    dots.forEach(dot => {
+      dot.addEventListener("click", (e) => {
+        const index = parseInt(e.target.dataset.index);
+        currentIndex = index;
+        showSlide(currentIndex);
+        resetTimer();
+      });
     });
 
     // Autoplay Logic
