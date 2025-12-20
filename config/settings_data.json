@@ -11,7 +11,7 @@
   "current": {
     "logo": "shopify://shop_images/OHPAIR_s.png",
     "logo_width": 300,
-    "type_header_font": "anton_n4",
+    "type_header_font": "unbounded_n4",
     "heading_scale": 100,
     "type_body_font": "chakra_petch_n4",
     "body_scale": 100,
