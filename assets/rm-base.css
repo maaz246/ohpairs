@@ -1,3 +1,10 @@
+a{
+    text-decoration: none;
+}
+.rm_order_text{
+    color: black;
+    font-size: 13px;
+}
 .rm_navigation-wrapper{
     width: 100%;
     background-color: transparent;
