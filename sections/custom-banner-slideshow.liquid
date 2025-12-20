@@ -246,9 +246,10 @@
     background-color: rgba(255, 255, 255, 0.6);
   }
 
-  .prev-slide { left: 20px; }
-  .next-slide { right: 20px; }
-
+  .prev-slide { left: -60px; transition: 0.5s ease; }
+  .next-slide { right: -60px; transition: 0.5s ease; }
+  .slideshow-wrapper:hover .prev-slide{left: 20px;}
+  .slideshow-wrapper:hover .next-slide{right: 20px;} 
   /* Mobile Responsive */
   @media only screen and (max-width: 768px) {
     .custom-slideshow-container {
