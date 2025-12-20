@@ -31,7 +31,20 @@
             "bg_image": "shopify://shop_images/Untitled_design_184189a0-e973-4bf4-bb4e-84c2b2ee2b60.png",
             "overlay_opacity": 30,
             "product_image": "shopify://shop_images/Nike-Air-Max-Plus-Photoroom.png",
-            "heading": "Jordern<br>Blue Ace",
+            "heading": "JordernBlue Ace",
+            "subtext": "Discover the latest trends in our collection.",
+            "text_color": "#ffffff",
+            "btn_label": "Shop Now",
+            "btn_link": "#"
+          }
+        },
+        "slide_igTECk": {
+          "type": "slide",
+          "settings": {
+            "bg_image": "shopify://shop_images/Untitled_design_2.png",
+            "overlay_opacity": 30,
+            "product_image": "shopify://shop_images/Nike-Air-Max-Phoenix-Green-Strike-Black-Photoroom.png",
+            "heading": "Jordern Blue Ace",
             "subtext": "Discover the latest trends in our collection.",
             "text_color": "#ffffff",
             "btn_label": "Shop Now",
@@ -41,7 +54,8 @@
       },
       "block_order": [
         "slide_3zBcHz",
-        "slide_eDtNK3"
+        "slide_eDtNK3",
+        "slide_igTECk"
       ],
       "name": "Custom Banner Slideshow",
       "settings": {
