@@ -1,0 +1,415 @@
+{% comment %}
+  Product Carousel - Fade Up Animation
+  - Top Left Navigation Arrows
+  - Mobile Responsive Scroll
+  - Schema for Styling
+{% endcomment %}
+
+<div class="pc-carousel-section" style="background-color: {{ section.settings.bg_color }};">
+  <div class="page-width">
+    
+    <div class="pc-header">
+      <div class="pc-title-wrapper">
+        {% if section.settings.title != blank %}
+          <h2 class="pc-title" style="color: {{ section.settings.text_color }}">{{ section.settings.title }}</h2>
+        {% endif %}
+      </div>
+      
+      <div class="pc-nav-arrows">
+        <button class="pc-arrow pc-prev" aria-label="Previous Products">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+        </button>
+        <button class="pc-arrow pc-next" aria-label="Next Products">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="pc-carousel-wrapper">
+      <div class="pc-carousel-track" id="track-{{ section.id }}">
+        
+        {%- assign collection = collections[section.settings.collection] -%}
+        {%- assign product_limit = section.settings.product_limit -%}
+
+        {% if collection != blank %}
+          {% for product in collection.products limit: product_limit %}
+            <div class="pc-product-card fade-up-item">
+              <a href="{{ product.url }}" class="pc-product-link">
+                <div class="pc-image-wrapper">
+                  {% if product.featured_image != blank %}
+                    <img 
+                      src="{{ product.featured_image | image_url: width: 600 }}" 
+                      alt="{{ product.title | escape }}"
+                      loading="lazy"
+                      width="600"
+                      height="{{ 600 | divided_by: product.featured_image.aspect_ratio | ceil }}"
+                    >
+                    {% if product.images[1] != blank and section.settings.show_secondary_hover %}
+                      <img 
+                        class="pc-hover-image"
+                        src="{{ product.images[1] | image_url: width: 600 }}" 
+                        alt="{{ product.title | escape }}"
+                        loading="lazy"
+                      >
+                    {% endif %}
+                  {% else %}
+                    {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                  {% endif %}
+                  
+                  {% if product.compare_at_price > product.price %}
+                    <span class="pc-badge sale">Sale</span>
+                  {% endif %}
+                </div>
+                
+                <div class="pc-info">
+                  <h3 class="pc-product-title" style="color: {{ section.settings.text_color }}">{{ product.title }}</h3>
+                  <div class="pc-price" style="color: {{ section.settings.text_color }}">
+                    {% if product.compare_at_price > product.price %}
+                      <span class="pc-compare-price">{{ product.compare_at_price | money }}</span>
+                    {% endif %}
+                    <span class="pc-regular-price">{{ product.price | money }}</span>
+                  </div>
+                </div>
+              </a>
+            </div>
+          {% endfor %}
+        {% else %}
+          {% for i in (1..6) %}
+            <div class="pc-product-card fade-up-item">
+              <div class="pc-image-wrapper">
+                {{ 'product-' | append: i | placeholder_svg_tag: 'placeholder-svg' }}
+              </div>
+              <div class="pc-info">
+                <h3 class="pc-product-title" style="color: {{ section.settings.text_color }}">Example Product {{ i }}</h3>
+                <div class="pc-price" style="color: {{ section.settings.text_color }}">$19.99</div>
+              </div>
+            </div>
+          {% endfor %}
+        {% endif %}
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* --- Section Styles --- */
+  .pc-carousel-section {
+    padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px;
+    overflow: hidden;
+  }
+  
+  .page-width {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* --- Header (Top Left Arrows) --- */
+  .pc-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+
+  .pc-title {
+    margin: 0;
+    font-size: {{ section.settings.heading_size }}px;
+    font-weight: 700;
+  }
+
+  .pc-nav-arrows {
+    display: flex;
+    gap: 10px;
+  }
+
+  .pc-arrow {
+    background: transparent;
+    border: 1px solid {{ section.settings.text_color }};
+    color: {{ section.settings.text_color }};
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .pc-arrow:hover {
+    background: {{ section.settings.text_color }};
+    color: {{ section.settings.bg_color }};
+  }
+  
+  /* --- Carousel Track --- */
+  .pc-carousel-wrapper {
+    position: relative;
+    width: 100%;
+  }
+
+  .pc-carousel-track {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding-bottom: 20px; /* Space for scrollbar if visible */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE */
+  }
+  
+  .pc-carousel-track::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+
+  /* --- Product Card --- */
+  .pc-product-card {
+    min-width: 280px; /* Desktop width */
+    max-width: 280px;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .pc-product-link {
+    text-decoration: none;
+    display: block;
+  }
+
+  .pc-image-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    aspect-ratio: 1 / 1.2; /* Portrait aspect ratio */
+    background: #f4f4f4;
+    margin-bottom: 15px;
+  }
+
+  .pc-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  /* Hover Zoom Effect */
+  .pc-product-card:hover .pc-image-wrapper img {
+    transform: scale(1.05);
+  }
+
+  /* Secondary Hover Image */
+  .pc-hover-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    z-index: 2;
+    transition: opacity 0.4s ease;
+  }
+
+  .pc-product-card:hover .pc-hover-image {
+    opacity: 1;
+  }
+
+  /* Text Styles */
+  .pc-product-title {
+    font-size: 16px;
+    margin: 0 0 5px;
+    font-weight: 500;
+  }
+
+  .pc-price {
+    font-size: 14px;
+    opacity: 0.8;
+  }
+
+  .pc-compare-price {
+    text-decoration: line-through;
+    margin-right: 8px;
+    opacity: 0.6;
+  }
+
+  /* Sale Badge */
+  .pc-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #000;
+    color: #fff;
+    padding: 4px 10px;
+    font-size: 12px;
+    border-radius: 4px;
+    z-index: 3;
+  }
+
+  /* --- Fade Up Animation Keyframes --- */
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .fade-up-item {
+    opacity: 0; /* Start hidden */
+    animation: fadeUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  }
+
+  /* Stagger animation delay for first few items */
+  .fade-up-item:nth-child(1) { animation-delay: 0.1s; }
+  .fade-up-item:nth-child(2) { animation-delay: 0.2s; }
+  .fade-up-item:nth-child(3) { animation-delay: 0.3s; }
+  .fade-up-item:nth-child(4) { animation-delay: 0.4s; }
+
+  /* --- Mobile Responsive --- */
+  @media only screen and (max-width: 768px) {
+    .pc-product-card {
+      min-width: 200px; /* Smaller cards on mobile */
+      max-width: 200px;
+    }
+    
+    .pc-header {
+      flex-direction: row; /* Keep arrows next to title or stack? */
+      justify-content: space-between;
+    }
+    
+    .pc-title {
+      font-size: {{ section.settings.heading_size | times: 0.7 }}px;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const track = document.getElementById("track-{{ section.id }}");
+    const prevBtn = track.parentElement.parentElement.querySelector(".pc-prev");
+    const nextBtn = track.parentElement.parentElement.querySelector(".pc-next");
+    
+    if (!track || !prevBtn || !nextBtn) return;
+
+    // Scroll amount calculation (approx 1 card width + gap)
+    const getScrollAmount = () => {
+      const card = track.querySelector('.pc-product-card');
+      return card ? card.offsetWidth + 20 : 300;
+    };
+
+    nextBtn.addEventListener("click", () => {
+      track.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+    });
+
+    prevBtn.addEventListener("click", () => {
+      track.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+    });
+    
+    // Optional: Intersection Observer to trigger fade-up when scrolled into view
+    // (This ensures items off-screen don't animate until user sees them)
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    const items = track.querySelectorAll('.fade-up-item');
+    items.forEach(item => {
+      // Pause animation initially if you want it to wait for scroll
+      // item.style.animationPlayState = 'paused'; 
+      // observer.observe(item);
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Product Carousel FadeUp",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Trending Now"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Select Collection"
+    },
+    {
+      "type": "range",
+      "id": "product_limit",
+      "min": 4,
+      "max": 12,
+      "step": 1,
+      "label": "Number of Products",
+      "default": 8
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_hover",
+      "label": "Show Second Image on Hover",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Styling"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#121212"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading Font Size",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top Padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom Padding",
+      "default": 60
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Carousel FadeUp"
+    }
+  ]
+}
+{% endschema %}
