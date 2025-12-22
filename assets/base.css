@@ -1,12 +1,6 @@
-@font-face {
-  font-family: 'RoyalOhPairs';
-  src: url('{{ "https://fonts.googleapis.com/css2?family=BBH+Bartle&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" | asset_url }}') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
+
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'RoyalOhPairs', sans-serif !important;
+  font-family: "Urbanist", sans-serif;
 }
 :root {
   --alpha-button-background: 1;
