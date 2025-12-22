@@ -1,3 +1,13 @@
+@font-face {
+  font-family: 'RM_ohpairs-fonts';
+  src: url('{{ "Horizon.woff2" | asset_url }}') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'RM_ohpairs-fonts', sans-serif !important;
+}
 :root {
   --alpha-button-background: 1;
   --alpha-button-border: 1;
