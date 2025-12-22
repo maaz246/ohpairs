@@ -1,6 +1,14 @@
+@font-face {
+  font-family: 'OhPairsFonts';
+  src: url('{{ "BBHBartle-Regular.woff2" | asset_url }}') format('woff2'),
+       url('{{ "BBHBartle-Regular.woff" | asset_url }}') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Urbanist", sans-serif;
+  font-family: 'OhPairsFonts', sans-serif !important;
 }
 :root {
   --alpha-button-background: 1;
