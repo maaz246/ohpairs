@@ -65,13 +65,13 @@
         "autoplay_speed": 3
       }
     },
-    "product_carousel_fadeup_Ubt9bd": {
+    "product_carousel_fadeup_ErpLKz": {
       "type": "product-carousel-fadeup",
-      "name": "Product Carousel FadeUp",
+      "name": "RM Product Carousel",
       "settings": {
         "title": "Trending Now",
         "collection": "testing",
-        "product_limit": 4,
+        "product_limit": 8,
         "show_secondary_hover": true,
         "bg_color": "#FFFFFF",
         "text_color": "#121212",
@@ -247,7 +247,7 @@
   },
   "order": [
     "custom_banner_slideshow_wDUCwX",
-    "product_carousel_fadeup_Ubt9bd",
+    "product_carousel_fadeup_ErpLKz",
     "rich_text",
     "featured_collection",
     "collage",
