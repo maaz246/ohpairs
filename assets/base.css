@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'RoyalOhPairs';
-  src: url('{{ "Horizon.woff2" | asset_url }}') format('woff2');
+  src: url('{{ "https://fonts.googleapis.com/css2?family=BBH+Bartle&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" | asset_url }}') format('woff2');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
