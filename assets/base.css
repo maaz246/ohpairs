@@ -78,9 +78,9 @@
 /* base */
 
 .page-width {
-  max-width: 1600px;
+  max-width: 1600px !important; 
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 1.5rem !important;
 }
 
 body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
