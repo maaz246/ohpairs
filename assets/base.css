@@ -78,12 +78,13 @@
 /* base */
 
 .page-width {
-  max-width: 1600px !important; 
+  max-width: 1500px ; 
   margin: 0 auto;
   padding: 0 1.5rem !important;
+  width: 100%;
 }
 
-body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
+body:has(.section-header .drawer-menu) .announcement-bar-section  {
   max-width: 100%;
 }
 
