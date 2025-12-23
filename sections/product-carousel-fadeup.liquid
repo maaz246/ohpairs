@@ -101,14 +101,14 @@
                       <span class="RM-regular-price">{{ product.price | money }}</span>
                     </div>
 
-                    {% if product.available %}
+                    
                       <form method="post" action="/cart/add" class="RM-atc-form" onsubmit="addToCart(event, this)">
                         <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
                         <button type="submit" class="RM-atc-btn" aria-label="Add to Cart">
                           
                           {% if section.settings.cart_icon != blank %}
                             <img src="{{ section.settings.cart_icon | image_url: width: 40 }}" class="RM-btn-icon normal-state" alt="Add">
-                          {% else %}
+                         
                             <span style="font-size: 20px;">+</span> {% endif %}
 
                           {% if section.settings.success_icon != blank %}
@@ -117,11 +117,6 @@
                           
                         </button>
                       </form>
-                    {% else %}
-                       <button class="RM-atc-btn disabled" disabled style="opacity: 0.5;">
-                          <span>x</span>
-                       </button>
-                    {% endif %}
                   </div>
                 </div>
             </div>
