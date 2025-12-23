@@ -89,9 +89,30 @@
                 {{ 'product-' | append: i | placeholder_svg_tag: 'placeholder-svg' }}
               </div>
               <div class="RM-info">
-                <h3 class="RM-product-title" style="color: {{ section.settings.text_color }}">Example Product {{ i }}</h3>
-                <div class="RM-price" style="color: {{ section.settings.text_color }}">$19.99</div>
-              </div>
+  <h3 class="RM-product-title" style="color: {{ section.settings.text_color }}">{{ product.title }}</h3>
+  
+  <div class="RM-price-row">
+    
+    <div class="RM-price" style="color: {{ section.settings.text_color }}">
+      {% if product.compare_at_price > product.price %}
+        <span class="RM-compare-price">{{ product.compare_at_price | money }}</span>
+      {% endif %}
+      <span class="RM-regular-price">{{ product.price | money }}</span>
+    </div>
+
+    <form method="post" action="/cart/add" class="RM-atc-form" data-product-id="{{ product.selected_or_first_available_variant.id }}">
+      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+      <button type="submit" class="RM-atc-btn" aria-label="Add to Cart">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+      </button>
+    </form>
+
+  </div>
+</div>
             </div>
           {% endfor %}
         {% endif %}
@@ -236,7 +257,40 @@
     color: red;
     font-weight: 600;
   }
+   /* Container for Price + Button */
+.RM-price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Pushes price left, button right */
+  margin-top: 5px;
+}
 
+/* The Round Cart Button */
+.RM-atc-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #000; /* Button Background Color */
+  color: #fff;            /* Icon Color */
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.RM-atc-btn:hover {
+  background-color: #444;
+  transform: scale(1.1);
+}
+
+/* Success State (Used by JS) */
+.RM-atc-btn.added {
+  background-color: #28a745; /* Green */
+  transform: scale(1.1);
+}
   /* Sale Badge */
   .RM-badge {
     position: absolute;
@@ -313,6 +367,52 @@
       track.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
     });
   });
+
+  document.addEventListener("DOMContentLoaded", function() {
+  const forms = document.querySelectorAll('.RM-atc-form');
+
+  forms.forEach(form => {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault(); // Stop page reload
+
+      const btn = form.querySelector('.RM-atc-btn');
+      const originalHtml = btn.innerHTML;
+      const formData = new FormData(form);
+
+      // Simple visual feedback: Loading
+      btn.style.opacity = '0.7';
+
+      fetch(window.Shopify.routes.root + 'cart/add.js', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        // Success Animation
+        btn.classList.add('added');
+        // Change icon to checkmark
+        btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+        
+        // Optional: Update global cart count if your theme supports it
+        // document.dispatchEvent(new Event('cart:refresh')); 
+
+        // Reset button after 2 seconds
+        setTimeout(() => {
+          btn.classList.remove('added');
+          btn.innerHTML = originalHtml;
+          btn.style.opacity = '1';
+        }, 2000);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        btn.style.opacity = '1';
+        alert('Could not add to cart. Please try again.');
+      });
+    });
+  });
+});
 </script>
 
 {% schema %}
