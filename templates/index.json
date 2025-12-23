@@ -65,7 +65,7 @@
         "autoplay_speed": 3
       }
     },
-    "product_carousel_fadeup_ErpLKz": {
+    "product_carousel_fadeup_iDcfNe": {
       "type": "product-carousel-fadeup",
       "name": "RM Product Carousel",
       "settings": {
@@ -73,12 +73,10 @@
         "collection": "testing",
         "product_limit": 8,
         "show_secondary_hover": true,
-        "cart_icon": "shopify://shop_images/rm-cart-icon.svg",
-        "success_icon": "shopify://shop_images/rm-cart-icon.svg",
-        "bg_color": "#ffffff",
+        "bg_color": "#FFFFFF",
         "text_color": "#121212",
         "heading_size": 32,
-        "padding_top": 60,
+        "padding_top": 88,
         "padding_bottom": 60
       }
     },
@@ -249,7 +247,7 @@
   },
   "order": [
     "custom_banner_slideshow_wDUCwX",
-    "product_carousel_fadeup_ErpLKz",
+    "product_carousel_fadeup_iDcfNe",
     "rich_text",
     "featured_collection",
     "collage",
