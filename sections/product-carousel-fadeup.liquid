@@ -1,30 +1,42 @@
-{% comment %}
-  Product Carousel - Fade Up Animation
-  - Prefix updated to RM
-  - Square Image Boxes (1:1)
-  - Top Left Navigation Arrows
-  - Mobile Responsive
+{% comment %} 
+    Product Carousel - Fade Up Animation 
+    - Prefix updated to RM 
+    - Square Image Boxes (1:1) 
+    - Top Left Navigation Arrows 
+    - Mobile Responsive 
 {% endcomment %}
 
 <div class="RM-carousel-section" style="background-color: {{ section.settings.bg_color }};">
   <div class="page-width">
-    
+
     <div class="RM-header">
       <div class="RM-title-wrapper">
         {% if section.settings.title != blank %}
           <h2 class="RM-title" style="color: {{ section.settings.text_color }}">{{ section.settings.title }}</h2>
         {% endif %}
       </div>
-      
+
       <div class="RM-nav-arrows">
         <button class="RM-arrow RM-prev" aria-label="Previous Products">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M15 18l-6-6 6-6"/>
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2">
+            <path d="M15 18l-6-6 6-6" />
           </svg>
         </button>
         <button class="RM-arrow RM-next" aria-label="Next Products">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M9 18l6-6-6-6"/>
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2">
+            <path d="M9 18l6-6-6-6" />
           </svg>
         </button>
       </div>
@@ -32,7 +44,7 @@
 
     <div class="RM-carousel-wrapper">
       <div class="RM-carousel-track" id="track-{{ section.id }}">
-        
+
         {%- assign collection = collections[section.settings.collection] -%}
         {%- assign product_limit = section.settings.product_limit -%}
 
@@ -42,34 +54,32 @@
               <a href="{{ product.url }}" class="RM-product-link">
                 <div class="RM-image-wrapper">
                   {% if product.featured_image != blank %}
-                    <img 
-                      src="{{ product.featured_image | image_url: width: 600, height: 600, crop: 'center' }}" 
+                    <img
+                      src="{{ product.featured_image | image_url: width: 600, height: 600, crop: 'center' }}"
                       alt="{{ product.title | escape }}"
                       loading="lazy"
                       width="600"
-                      height="600"
-                    >
+                      height="600">
                     {% if product.images[1] != blank and section.settings.show_secondary_hover %}
-                      <img 
+                      <img
                         class="RM-hover-image"
-                        src="{{ product.images[1] | image_url: width: 600, height: 600, crop: 'center' }}" 
+                        src="{{ product.images[1] | image_url: width: 600, height: 600, crop: 'center' }}"
                         alt="{{ product.title | escape }}"
                         loading="lazy"
                         width="600"
-                        height="600"
-                      >
+                        height="600">
                     {% endif %}
                   {% else %}
                     {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
                   {% endif %}
-                  
-                 {% if product.compare_at_price > product.price %}
+
+                  {% if product.compare_at_price > product.price %}
                     <span class="RM-badge sale">
                       Save {{ product.compare_at_price | minus: product.price | money }}
                     </span>
                   {% endif %}
                 </div>
-                
+
                 <div class="RM-info">
                   <h3 class="RM-product-title" style="color: {{ section.settings.text_color }}">{{ product.title }}</h3>
                   <div class="RM-price" style="color: {{ section.settings.text_color }}">
@@ -89,40 +99,59 @@
                 {{ 'product-' | append: i | placeholder_svg_tag: 'placeholder-svg' }}
               </div>
               <div class="RM-info">
-                  <a href="{{ product.url }}" style="text-decoration: none;">
-                    <h3 class="RM-product-title" style="color: {{ section.settings.text_color }}">{{ product.title }}</h3>
-                  </a>
+                <a href="{{ product.url }}" style="text-decoration: none;">
+                  <h3 class="RM-product-title" style="color: {{ section.settings.text_color }}">{{ product.title }}</h3>
+                </a>
 
-                  <div class="RM-price-row">
-                    <div class="RM-price" style="color: {{ section.settings.text_color }}">
-                      {% if product.compare_at_price > product.price %}
-                        <span class="RM-compare-price">{{ product.compare_at_price | money }}</span>
-                      {% endif %}
-                      <span class="RM-regular-price">{{ product.price | money }}</span>
-                    </div>
-
-                    
-                      <form method="post" action="/cart/add" class="RM-atc-form" onsubmit="addToCart(event, this)">
-                        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-                        <button type="submit" class="RM-atc-btn" aria-label="Add to Cart">
-                          
-                          {% if section.settings.cart_icon != blank %}
-                            <img src="{{ section.settings.cart_icon | image_url: width: 40 }}" width="100px" height="100px" class="RM-btn-icon normal-state" alt="Add">
-                         
-                            <span style="font-size: 20px;">+</span> {% endif %}
-
-                          {% if section.settings.success_icon != blank %}
-                            <img src="{{ section.settings.success_icon | image_url: width: 40 }}" width="100px" height="100px" class="RM-btn-icon success-state" alt="Added">
-                          {% endif %}
-                          
-                        </button>
-                      </form>
+                <div class="RM-price-row">
+                  <div class="RM-price" style="color: {{ section.settings.text_color }}">
+                    {% if product.compare_at_price > product.price %}
+                      <span class="RM-compare-price">{{ product.compare_at_price | money }}</span>
+                    {% endif %}
+                    <span class="RM-regular-price">{{ product.price | money }}</span>
                   </div>
+
+
+                  <form
+                    method="post"
+                    action="/cart/add"
+                    class="RM-atc-form"
+                    onsubmit="addToCart(event, this)">
+                    <input
+                      type="hidden"
+                      name="id"
+                      value="{{ product.selected_or_first_available_variant.id }}">
+                    <button
+                      type="submit"
+                      class="RM-atc-btn"
+                      aria-label="Add to Cart">
+
+
+                      <img
+                        src="{{ section.settings.cart_icon | image_url: width: 40 }}"
+                        width="100px"
+                        height="100px"
+                        class="RM-btn-icon normal-state"
+                        alt="Add">
+
+                      <span style="font-size: 20px;">+</span>
+
+                      <img
+                        src="{{ section.settings.success_icon | image_url: width: 40 }}"
+                        width="100px"
+                        height="100px"
+                        class="RM-btn-icon success-state"
+                        alt="Added">
+
+
+                    </button>
+                  </form>
                 </div>
+              </div>
             </div>
           {% endfor %}
         {% endif %}
-        
+
       </div>
     </div>
   </div>
@@ -131,11 +160,12 @@
 <style>
   /* --- Section Styles --- */
   .RM-carousel-section {
-    padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px;
+    padding: {{ section.settings.padding_top }}
+    px 0{{ section.settings.padding_bottom }}px;
     overflow: hidden;
   }
-  
- 
+
+
   /* --- Header (Top Left Arrows) --- */
   .RM-header {
     display: flex;
@@ -158,7 +188,7 @@
 
   .RM-arrow {
     background: transparent;
-    border: 1px solid {{ section.settings.text_color }};
+    border: 1px solid{{ section.settings.text_color }};
     color: {{ section.settings.text_color }};
     width: 40px;
     height: 40px;
@@ -174,7 +204,7 @@
     background: {{ section.settings.text_color }};
     color: {{ section.settings.bg_color }};
   }
-  
+
   /* --- Carousel Track --- */
   .RM-carousel-wrapper {
     position: relative;
@@ -190,14 +220,14 @@
     scrollbar-width: none;
     -ms-overflow-style: none;
   }
-  
+
   .RM-carousel-track::-webkit-scrollbar {
     display: none;
   }
 
   /* --- Product Card --- */
   .RM-product-card {
-    min-width: 280px; 
+    min-width: 280px;
     max-width: 280px;
     flex-shrink: 0;
     position: relative;
@@ -213,7 +243,8 @@
     position: relative;
     overflow: hidden;
     border-radius: 8px;
-    aspect-ratio: 1 / 1; /* Forces perfectly square box */
+    aspect-ratio: 1 / 1;
+    /* Forces perfectly square box */
     background: #f4f4f4;
     margin-bottom: 15px;
     width: 100%;
@@ -222,7 +253,8 @@
   .RM-image-wrapper img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ensures image fills the square without stretching */
+    object-fit: cover;
+    /* Ensures image fills the square without stretching */
     transition: transform 0.5s ease;
   }
 
@@ -284,15 +316,18 @@
     width: 38px;
     height: 38px;
     border-radius: 50%;
-    background-color: {{ section.settings.text_color }}; /* Default Black */
+    background-color: {{ section.settings.text_color }};
+    /* Default Black */
     color: #fff;
     border: none;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: transform 0.2s ease, background-color 0.3s;
-    padding: 8px; /* Padding for the image inside */
+    transition: transform 0.2s ease
+    , background-color 0.3s;
+    padding: 8px;
+    /* Padding for the image inside */
     position: relative;
     overflow: hidden;
   }
@@ -316,12 +351,14 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    opacity: 0; /* Hidden by default */
+    opacity: 0;
+    /* Hidden by default */
   }
 
   /* When Added Class is Active */
   .RM-atc-btn.added {
-    background-color: #2e7d32 !important; /* Green */
+    background-color: #2e7d32 !important;
+    /* Green */
   }
 
   /* If success icon exists, show it and hide normal */
@@ -349,24 +386,34 @@
     animation: fadeUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
   }
 
-  .fade-up-item:nth-child(1) { animation-delay: 0.1s; }
-  .fade-up-item:nth-child(2) { animation-delay: 0.2s; }
-  .fade-up-item:nth-child(3) { animation-delay: 0.3s; }
-  .fade-up-item:nth-child(4) { animation-delay: 0.4s; }
+  .fade-up-item:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+  .fade-up-item:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  .fade-up-item:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+  .fade-up-item:nth-child(4) {
+    animation-delay: 0.4s;
+  }
 
   /* --- Mobile Responsive --- */
   @media only screen and (max-width: 768px) {
     .RM-product-card {
-      min-width: 200px; /* Smaller cards on mobile */
+      min-width: 200px;
+      /* Smaller cards on mobile */
       max-width: 200px;
     }
-    
+
     .RM-header {
-      flex-direction: row; 
+      flex-direction: row;
       justify-content: space-between;
     }
-    
-    .RM-product-title, .RM-regular-price {
+
+    .RM-product-title,
+    .RM-regular-price {
       font-size: 12px;
       color: black;
     }
@@ -380,22 +427,22 @@
     const nextBtn = track.parentElement.parentElement.querySelector(".RM-next");
     
     if (!track || !prevBtn || !nextBtn) return;
-
+  
     // Scroll amount calculation (approx 1 card width + gap)
     const getScrollAmount = () => {
       const card = track.querySelector('.RM-product-card');
       return card ? card.offsetWidth + 20 : 300;
     };
-
+  
     nextBtn.addEventListener("click", () => {
       track.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
     });
-
+  
     prevBtn.addEventListener("click", () => {
       track.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
     });
   });
-
+  
   // Clean JS - No SVG Injection
   function addToCart(e, form) {
     e.preventDefault();
@@ -404,9 +451,9 @@
     
     // 1. Loading Feedback (Fade out slightly)
     btn.style.opacity = '0.6';
-
+  
     const formData = new FormData(form);
-
+  
     fetch(window.Shopify.routes.root + 'cart/add.js', {
       method: 'POST',
       body: formData
@@ -416,7 +463,7 @@
       // 2. Success Feedback
       btn.style.opacity = '1';
       btn.classList.add('added'); // This triggers CSS change (Green bg + Icon swap)
-
+  
       // 3. Reset after 2 seconds
       setTimeout(() => {
         btn.classList.remove('added');
@@ -432,102 +479,93 @@
 </script>
 
 {% schema %}
-{
-  "name": "RM Product Carousel",
-  "settings": [
-    {
-      "type": "text",
-      "id": "title",
-      "label": "Heading",
-      "default": "Trending Now"
-    },
-    {
-      "type": "collection",
-      "id": "collection",
-      "label": "Select Collection"
-    },
-    {
-      "type": "range",
-      "id": "product_limit",
-      "min": 4,
-      "max": 12,
-      "step": 1,
-      "label": "Number of Products",
-      "default": 8
-    },
-    {
-      "type": "checkbox",
-      "id": "show_secondary_hover",
-      "label": "Show Second Image on Hover",
-      "default": true
-    },
-    {
-      "type": "header",
-      "content": "Button Icons"
-    },
-    {
-      "type": "image_picker",
-      "id": "cart_icon",
-      "label": "Cart Icon (Required)",
-      "info": "Upload a white icon with transparent background (PNG)"
-    },
-    {
-      "type": "image_picker",
-      "id": "success_icon",
-      "label": "Success Icon (Optional)",
-      "info": "Image to show when added (e.g., Checkmark)"
-    },
-    {
-      "type": "header",
-      "content": "Styling"
-    },
-    {
-      "type": "color",
-      "id": "bg_color",
-      "label": "Background Color",
-      "default": "#FFFFFF"
-    },
-    {
-      "type": "color",
-      "id": "text_color",
-      "label": "Text Color",
-      "default": "#121212"
-    },
-    {
-      "type": "range",
-      "id": "heading_size",
-      "min": 20,
-      "max": 60,
-      "step": 2,
-      "unit": "px",
-      "label": "Heading Font Size",
-      "default": 32
-    },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "Top Padding",
-      "default": 60
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "Bottom Padding",
-      "default": 60
-    }
-  ],
-  "presets": [
-    {
-      "name": "RM Product Carousel"
-    }
-  ]
-}
+  {
+    "name": "RM Product Carousel",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Trending Now"
+      },
+      {
+        "type": "collection",
+        "id": "collection",
+        "label": "Select Collection"
+      },
+      {
+        "type": "range",
+        "id": "product_limit",
+        "min": 4,
+        "max": 12,
+        "step": 1,
+        "label": "Number of Products",
+        "default": 8
+      },
+      {
+        "type": "checkbox",
+        "id": "show_secondary_hover",
+        "label": "Show Second Image on Hover",
+        "default": true
+      }, {
+        "type": "header",
+        "content": "Button Icons"
+      }, {
+        "type": "image_picker",
+        "id": "cart_icon",
+        "label": "Cart Icon (Required)",
+        "info": "Upload a white icon with transparent background (PNG)"
+      }, {
+        "type": "image_picker",
+        "id": "success_icon",
+        "label": "Success Icon (Optional)",
+        "info": "Image to show when added (e.g., Checkmark)"
+      }, {
+        "type": "header",
+        "content": "Styling"
+      }, {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Background Color",
+        "default": "#FFFFFF"
+      }, {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text Color",
+        "default": "#121212"
+      }, {
+        "type": "range",
+        "id": "heading_size",
+        "min": 20,
+        "max": 60,
+        "step": 2,
+        "unit": "px",
+        "label": "Heading Font Size",
+        "default": 32
+      }, {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Top Padding",
+        "default": 60
+      }, {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Bottom Padding",
+        "default": 60
+      }
+    ],
+    "presets": [
+      {
+        "name": "RM Product Carousel"
+      }
+    ]
+  }
 {% endschema %}
