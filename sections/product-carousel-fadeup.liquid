@@ -107,12 +107,12 @@
                         <button type="submit" class="RM-atc-btn" aria-label="Add to Cart">
                           
                           {% if section.settings.cart_icon != blank %}
-                            <img src="{{ section.settings.cart_icon | image_url: width: 40 }}" class="RM-btn-icon normal-state" alt="Add">
+                            <img src="{{ section.settings.cart_icon | image_url: width: 40 }}" width="100px" height="100px" class="RM-btn-icon normal-state" alt="Add">
                          
                             <span style="font-size: 20px;">+</span> {% endif %}
 
                           {% if section.settings.success_icon != blank %}
-                            <img src="{{ section.settings.success_icon | image_url: width: 40 }}" class="RM-btn-icon success-state" alt="Added">
+                            <img src="{{ section.settings.success_icon | image_url: width: 40 }}" width="100px" height="100px" class="RM-btn-icon success-state" alt="Added">
                           {% endif %}
                           
                         </button>
