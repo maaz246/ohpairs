@@ -63,8 +63,10 @@
                     {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
                   {% endif %}
                   
-                  {% if product.compare_at_price > product.price %}
-                    <span class="RM-badge sale">Sale</span>
+                 {% if product.compare_at_price > product.price %}
+                    <span class="RM-badge sale">
+                      Save {{ product.compare_at_price | minus: product.price | money }}
+                    </span>
                   {% endif %}
                 </div>
                 
