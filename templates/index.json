@@ -76,8 +76,8 @@
         "bg_color": "#FFFFFF",
         "text_color": "#121212",
         "heading_size": 32,
-        "padding_top": 28,
-        "padding_bottom": 80
+        "padding_top": 52,
+        "padding_bottom": 32
       }
     },
     "rich_text": {
