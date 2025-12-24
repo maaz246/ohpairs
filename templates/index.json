@@ -96,7 +96,7 @@
         "collection": "testing",
         "product_limit": 8,
         "show_secondary_hover": true,
-        "bg_color": "#FFFFFF",
+        "bg_color": "#ffffff",
         "text_color": "#121212",
         "heading_size": 32,
         "padding_top": 0,
@@ -134,11 +134,56 @@
         "collection": "testing",
         "product_limit": 8,
         "show_secondary_hover": true,
-        "bg_color": "#FFFFFF",
+        "bg_color": "#ffffff",
         "text_color": "#121212",
         "heading_size": 32,
         "padding_top": 0,
         "padding_bottom": 32
+      }
+    },
+    "rm_reviews_section_mJDrAM": {
+      "type": "rm-reviews-section",
+      "blocks": {
+        "review_r4Vgaq": {
+          "type": "review",
+          "settings": {
+            "review_text": "I absolutely love these shoes! Great quality.",
+            "author_name": "John Doe",
+            "product_link": "",
+            "btn_label": "Shop This Look"
+          }
+        },
+        "review_nNBYcF": {
+          "type": "review",
+          "settings": {
+            "review_text": "I absolutely love these shoes! Great quality.",
+            "author_name": "John Doe",
+            "product_link": "",
+            "btn_label": "Shop This Look"
+          }
+        },
+        "review_mUVbyc": {
+          "type": "review",
+          "settings": {
+            "review_text": "I absolutely love these shoes! Great quality.",
+            "author_name": "John Doe",
+            "product_link": "",
+            "btn_label": "Shop This Look"
+          }
+        }
+      },
+      "block_order": [
+        "review_r4Vgaq",
+        "review_nNBYcF",
+        "review_mUVbyc"
+      ],
+      "name": "Shoppable Reviews",
+      "settings": {
+        "heading": "",
+        "bg_color": "#f9f9f9",
+        "text_color": "#000000",
+        "btn_color": "#000000",
+        "btn_text_color": "#ffffff"
       }
     }
   },
@@ -147,6 +192,7 @@
     "rich_text",
     "product_carousel_fadeup_iDcfNe",
     "rich_text_TdrmnW",
-    "product_carousel_fadeup_KdPEDG"
+    "product_carousel_fadeup_KdPEDG",
+    "rm_reviews_section_mJDrAM"
   ]
 }
