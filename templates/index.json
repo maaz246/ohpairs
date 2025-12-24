@@ -65,41 +65,19 @@
         "autoplay_speed": 3
       }
     },
-    "product_carousel_fadeup_iDcfNe": {
-      "type": "product-carousel-fadeup",
-      "name": "RM Product Carousel",
-      "settings": {
-        "title": "Trending Now",
-        "collection": "testing",
-        "product_limit": 8,
-        "show_secondary_hover": true,
-        "bg_color": "#FFFFFF",
-        "text_color": "#121212",
-        "heading_size": 32,
-        "padding_top": 52,
-        "padding_bottom": 32
-      }
-    },
     "rich_text": {
       "type": "rich-text",
       "blocks": {
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "Talk about your brand",
+            "heading": "<strong>New Arrivals</strong>",
             "heading_size": "h1"
-          }
-        },
-        "text": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
           }
         }
       },
       "block_order": [
-        "heading",
-        "text"
+        "heading"
       ],
       "settings": {
         "desktop_content_position": "center",
@@ -108,6 +86,21 @@
         "full_width": true,
         "padding_top": 40,
         "padding_bottom": 0
+      }
+    },
+    "product_carousel_fadeup_iDcfNe": {
+      "type": "product-carousel-fadeup",
+      "name": "RM Product Carousel",
+      "settings": {
+        "title": "",
+        "collection": "testing",
+        "product_limit": 8,
+        "show_secondary_hover": true,
+        "bg_color": "#FFFFFF",
+        "text_color": "#121212",
+        "heading_size": 32,
+        "padding_top": 52,
+        "padding_bottom": 32
       }
     },
     "featured_collection": {
@@ -247,8 +240,8 @@
   },
   "order": [
     "custom_banner_slideshow_wDUCwX",
-    "product_carousel_fadeup_iDcfNe",
     "rich_text",
+    "product_carousel_fadeup_iDcfNe",
     "featured_collection",
     "collage",
     "video",
