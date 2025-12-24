@@ -170,12 +170,52 @@
             "product_link": "",
             "btn_label": "Shop This Look"
           }
+        },
+        "review_C9QMzk": {
+          "type": "review",
+          "settings": {
+            "review_text": "I absolutely love these shoes! Great quality.",
+            "author_name": "John Doe",
+            "product_link": "",
+            "btn_label": "Shop This Look"
+          }
+        },
+        "review_eyUVhr": {
+          "type": "review",
+          "settings": {
+            "review_text": "I absolutely love these shoes! Great quality.",
+            "author_name": "John Doe",
+            "product_link": "",
+            "btn_label": "Shop This Look"
+          }
+        },
+        "review_tr4VXL": {
+          "type": "review",
+          "settings": {
+            "review_text": "I absolutely love these shoes! Great quality.",
+            "author_name": "John Doe",
+            "product_link": "",
+            "btn_label": "Shop This Look"
+          }
+        },
+        "review_8pMaYE": {
+          "type": "review",
+          "settings": {
+            "review_text": "I absolutely love these shoes! Great quality.",
+            "author_name": "John Doe",
+            "product_link": "",
+            "btn_label": "Shop This Look"
+          }
         }
       },
       "block_order": [
         "review_r4Vgaq",
         "review_nNBYcF",
-        "review_mUVbyc"
+        "review_mUVbyc",
+        "review_C9QMzk",
+        "review_eyUVhr",
+        "review_tr4VXL",
+        "review_8pMaYE"
       ],
       "name": "Shoppable Reviews",
       "settings": {
