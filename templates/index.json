@@ -225,6 +225,45 @@
         "btn_color": "#000000",
         "btn_text_color": "#ffffff"
       }
+    },
+    "vertical_sticky_slider_DF4VEf": {
+      "type": "vertical-sticky-slider",
+      "blocks": {
+        "slide_6hd87E": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/pastel-colors-3d-sneakers_23-2151853225.jpg",
+            "heading": "Heading 1",
+            "subheading": "Sub-heading text 1"
+          }
+        },
+        "slide_AQ4yWb": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Nike-Air-Max-Plus.jpg",
+            "heading": "Heading 2",
+            "subheading": "Sub-heading text 2"
+          }
+        },
+        "slide_QrdqJ6": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/dd9291-001-phcfh001-1000.webp",
+            "heading": "Heading 3",
+            "subheading": "Sub-heading text 3"
+          }
+        }
+      },
+      "block_order": [
+        "slide_6hd87E",
+        "slide_AQ4yWb",
+        "slide_QrdqJ6"
+      ],
+      "name": "Vertical Sticky Slider",
+      "settings": {
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
     }
   },
   "order": [
@@ -233,6 +272,7 @@
     "product_carousel_fadeup_iDcfNe",
     "rich_text_TdrmnW",
     "product_carousel_fadeup_KdPEDG",
-    "rm_reviews_section_mJDrAM"
+    "rm_reviews_section_mJDrAM",
+    "vertical_sticky_slider_DF4VEf"
   ]
 }
