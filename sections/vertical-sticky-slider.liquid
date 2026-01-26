@@ -1,83 +1,87 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
 {%- style -%}
   .vertical-slider-{{ section.id }} {
     margin-top: {{ section.settings.margin_top }}px;
     margin-bottom: {{ section.settings.margin_bottom }}px;
+    background-color: {{ section.settings.bg_color }};
   }
 
-  .vertical-slider-{{ section.id }} h2 { font-size: 30px; text-transform: uppercase; margin: 1rem 0; }
-  .vertical-slider-{{ section.id }} h3 { font-size: 40px; text-transform: uppercase; margin: 1rem 0; }
+  .vertical-slider-{{ section.id }} h2 { font-size: 30px; text-transform: uppercase; margin: 0; color: {{ section.settings.text_color }}; }
+  .vertical-slider-{{ section.id }} h3 { font-size: 40px; text-transform: uppercase; margin: 0; color: {{ section.settings.text_color }}; }
 
   .mobile-only { display: block; }
   .desktop-only { display: none !important; }
 
   @media (max-width: 1023px) {
-    .image-wrapper { height: 100vw; overflow: hidden; max-height: 500px; }
-    .image-wrapper img { width: 100%; height: 100%; object-fit: cover; }
-    .content { text-align: center; padding: 4rem 2rem; }
+    .image-wrapper-mob { height: 100vw; overflow: hidden; }
+    .image-wrapper-mob img { width: 100%; height: 100%; object-fit: cover; }
+    .content-mob { text-align: center; padding: 3rem 1.5rem; }
   }
 
   @media (min-width: 1024px) {
-    .vertical-slider-{{ section.id }} h2 { font-size: 50px; }
-    .vertical-slider-{{ section.id }} h3 { font-size: 60px; }
+    .vertical-slider-{{ section.id }} h2 { font-size: 4vw; }
+    .vertical-slider-{{ section.id }} h3 { font-size: 5vw; }
     .mobile-only { display: none !important; }
     .desktop-only { display: flex !important; }
 
-    .vertical-slider { display: flex; width: 100%; }
-    .vertical-slider > * { width: 50%; }
-    .sticky { position: sticky; top: 0; height: 100vh; overflow: hidden; }
-    .absolute-full { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+    .left-side { width: 50%; position: relative; }
+    .right-side { width: 50%; }
+
+    .sticky-container { position: sticky; top: 0; height: 100vh; width: 100%; overflow: hidden; }
+
+    .image-wrapper {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      clip-path: inset(100% 0% 0% 0%); /* Hidden state */
+      z-index: 1;
+    }
+
+    .image-wrapper.first-slide { clip-path: inset(0% 0% 0% 0%); z-index: 0; }
 
     .image-wrapper img { width: 100%; height: 100%; object-fit: cover; }
-    .content-wrapper { min-height: 100vh; opacity: 0.2; transition: opacity 0.5s ease-out; display: flex; align-items: center; justify-content: center; }
-    .content-wrapper.in-view { opacity: 1; }
-    .content { padding: 5rem 2rem; text-align: center; }
 
-    /* Mask Animation */
-    .image-wrapper .mask-outer { transform: translateY(100%); overflow: hidden; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
-    .image-wrapper .mask-inner { transform: translateY(-100%); transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
-    .image-wrapper.show { z-index: 2; }
-    .image-wrapper.show .mask-outer, .image-wrapper.show .mask-inner { transform: translateY(0); }
+    .content-wrapper {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 10%;
+    }
   }
 {%- endstyle -%}
 
 <div class="vertical-slider-{{ section.id }}">
   <div class="mobile-only">
     {% for block in section.blocks %}
-      <section {{ block.shopify_attributes }}>
-        <div class="image-wrapper">
+      <div class="slide-mob">
+        <div class="image-wrapper-mob">
           {% if block.settings.image != blank %}
-            {{ block.settings.image | image_url: width: 1000 | image_tag: loading: 'lazy' }}
+            {{ block.settings.image | image_url: width: 1000 | image_tag }}
           {% else %}
             {{ 'image' | placeholder_svg_tag }}
           {% endif %}
         </div>
-        <div class="content-wrapper">
-          <div class="content">
-            <h2>{{ block.settings.heading }}</h2>
-            <h3>{{ block.settings.subheading }}</h3>
-          </div>
+        <div class="content-mob">
+          <h2>{{ block.settings.heading }}</h2>
+          <h3>{{ block.settings.subheading }}</h3>
         </div>
-      </section>
+      </div>
     {% endfor %}
   </div>
 
-  <div class="desktop-only vertical-slider">
+  <div class="desktop-only">
     <div class="left-side">
-      <div class="sticky">
+      <div class="sticky-container">
         {% for block in section.blocks %}
-          <div
-            class="image-wrapper absolute-full {% if forloop.first %}show{% endif %}"
-            data-index="{{ forloop.index0 }}"
-          >
-            <div class="mask-outer absolute-full">
-              <div class="mask-inner absolute-full">
-                {% if block.settings.image != blank %}
-                  {{ block.settings.image | image_url: width: 1400 | image_tag: loading: 'lazy' }}
-                {% else %}
-                  {{ 'lifestyle-1' | placeholder_svg_tag: 'absolute-full' }}
-                {% endif %}
-              </div>
-            </div>
+          <div class="image-wrapper {% if forloop.first %}first-slide{% endif %}" data-index="{{ forloop.index0 }}">
+            {% if block.settings.image != blank %}
+              {{ block.settings.image | image_url: width: 1800 | image_tag }}
+            {% else %}
+              {{ 'lifestyle-1' | placeholder_svg_tag }}
+            {% endif %}
           </div>
         {% endfor %}
       </div>
@@ -85,55 +89,59 @@
 
     <div class="right-side">
       {% for block in section.blocks %}
-        <section class="content-wrapper" data-index="{{ forloop.index0 }}">
-          <div class="content">
+        <div class="content-wrapper" data-index="{{ forloop.index0 }}">
+          <div class="content-desktop">
             <h2>{{ block.settings.heading }}</h2>
             <h3>{{ block.settings.subheading }}</h3>
           </div>
-        </section>
+        </div>
       {% endfor %}
     </div>
   </div>
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const sectionContainer = document.querySelector('.vertical-slider-{{ section.id }}');
-    const imageWrappers = sectionContainer.querySelectorAll('.desktop-only .left-side .image-wrapper');
-    const contentWrappers = sectionContainer.querySelectorAll('.desktop-only .right-side .content-wrapper');
+  // Wait for GSAP and ScrollTrigger to be available
+  function initGsapSlider() {
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
 
-    const observerOptions = {
-      root: null,
-      threshold: 0.6,
-    };
+      const images = document.querySelectorAll('.vertical-slider-{{ section.id }} .image-wrapper');
+      const contents = document.querySelectorAll('.vertical-slider-{{ section.id }} .content-wrapper');
 
-    const observerCallback = (entries) => {
-      entries.forEach((entry) => {
-        const index = parseInt(entry.target.dataset.index);
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
-          imageWrappers.forEach((img, i) => {
-            if (i === index) {
-              img.classList.add('show');
-            } else if (i > index) {
-              img.classList.remove('show');
-            }
-          });
-        } else {
-          entry.target.classList.remove('in-view');
-        }
+      images.forEach((img, i) => {
+        if (i === 0) return; // Skip the first image (already visible)
+
+        gsap.to(img, {
+          clipPath: 'inset(0% 0% 0% 0%)',
+          ease: 'none',
+          scrollTrigger: {
+            trigger: contents[i],
+            start: 'top bottom',
+            end: 'top top',
+            scrub: true,
+          },
+        });
       });
-    };
+    } else {
+      // If not loaded yet, check again in 100ms
+      setTimeout(initGsapSlider, 100);
+    }
+  }
 
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
-    contentWrappers.forEach((wrapper) => observer.observe(wrapper));
-  });
+  // Start the check
+  initGsapSlider();
+
+  // Re-init for Shopify Theme Editor
+  document.addEventListener('shopify:section:load', initGsapSlider);
 </script>
 
 {% schema %}
 {
-  "name": "Vertical Sticky Slider",
+  "name": "GSAP Sticky Slider",
   "settings": [
+    { "type": "color", "id": "bg_color", "label": "Background Color", "default": "#ffffff" },
+    { "type": "color", "id": "text_color", "label": "Text Color", "default": "#000000" },
     {
       "type": "range",
       "id": "margin_top",
@@ -160,31 +168,12 @@
       "type": "slide",
       "name": "Slide",
       "settings": [
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Image"
-        },
-        {
-          "type": "text",
-          "id": "heading",
-          "label": "Heading",
-          "default": "Heading"
-        },
-        {
-          "type": "text",
-          "id": "subheading",
-          "label": "Sub-Heading",
-          "default": "Sub-heading text"
-        }
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Here are some" },
+        { "type": "text", "id": "subheading", "label": "Sub-Heading", "default": "Perks for joining" }
       ]
     }
   ],
-  "presets": [
-    {
-      "name": "Vertical Sticky Slider",
-      "blocks": [{ "type": "slide" }, { "type": "slide" }, { "type": "slide" }]
-    }
-  ]
+  "presets": [{ "name": "GSAP Sticky Slider" }]
 }
 {% endschema %}
