@@ -226,41 +226,43 @@
         "btn_text_color": "#ffffff"
       }
     },
-    "vertical_sticky_slider_DF4VEf": {
+    "vertical_sticky_slider_F4nGJm": {
       "type": "vertical-sticky-slider",
       "blocks": {
-        "slide_6hd87E": {
+        "slide_4UxUpN": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/pastel-colors-3d-sneakers_23-2151853225.jpg",
-            "heading": "Heading 1",
-            "subheading": "Sub-heading text 1"
+            "image": "shopify://shop_images/SsKcqodq_8494add6253047fb883847bbe1209b59.jpg",
+            "heading": "Here are some",
+            "subheading": "Perks for joining"
           }
         },
-        "slide_AQ4yWb": {
+        "slide_bt3GbM": {
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/Nike-Air-Max-Plus.jpg",
-            "heading": "Heading 2",
-            "subheading": "Sub-heading text 2"
+            "heading": "Here are some",
+            "subheading": "Perks for joining"
           }
         },
-        "slide_QrdqJ6": {
+        "slide_TTjL3B": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/dd9291-001-phcfh001-1000.webp",
-            "heading": "Heading 3",
-            "subheading": "Sub-heading text 3"
+            "image": "shopify://shop_images/pastel-colors-3d-sneakers_23-2151853225.jpg",
+            "heading": "Here are some",
+            "subheading": "Perks for joining"
           }
         }
       },
       "block_order": [
-        "slide_6hd87E",
-        "slide_AQ4yWb",
-        "slide_QrdqJ6"
+        "slide_4UxUpN",
+        "slide_bt3GbM",
+        "slide_TTjL3B"
       ],
-      "name": "Vertical Sticky Slider",
+      "name": "GSAP Sticky Slider",
       "settings": {
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
         "margin_top": 0,
         "margin_bottom": 0
       }
@@ -273,6 +275,6 @@
     "rich_text_TdrmnW",
     "product_carousel_fadeup_KdPEDG",
     "rm_reviews_section_mJDrAM",
-    "vertical_sticky_slider_DF4VEf"
+    "vertical_sticky_slider_F4nGJm"
   ]
 }
